@@ -5,6 +5,7 @@ import YourName from './components/YourName'; // your name
 import YourAge from './components/YourAge'; // your age
 import PetsRadioButton from './components/PetsRadioButton' // 5 pets option radio button
 import Header from './components/Header'
+import YourPet from './components/YourPet'
 
 
 export const App = () => {
@@ -16,9 +17,13 @@ export const App = () => {
   const [selectedPet, setSelectedPet] = useState(''); // fav pet
 
   const proceedToNextStep = () => {
-    setStep(prevStep => prevStep + 1);
+    if (step === 2) {
+      setStep(2.5);
+    } else {
+      setStep(prevStep => prevStep + 1);
+    }
   };
-
+  
   return (
     <div>
       <Header />
@@ -35,6 +40,14 @@ export const App = () => {
           <YourAge onNext={proceedToNextStep} setYourAgeProp={setYourAge} />
         </>
       )}
+
+{step === 2.5 && (
+  <>
+    <h4>Tell us about your pet:</h4>
+    <YourPet onNext={proceedToNextStep} />
+  </>
+)}
+
 
       {step === 3 && (
         <div className="App">
