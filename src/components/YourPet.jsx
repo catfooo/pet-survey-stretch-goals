@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function PetSurvey() {
+function PetSurvey({ onNext }) {
   const [selectedPets, setSelectedPets] = useState({
     dogs: false,
     cats: false,
@@ -14,6 +14,11 @@ function PetSurvey() {
       ...selectedPets,
       [event.target.name]: event.target.checked
     });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onNext();
   };
 
   return (
@@ -78,7 +83,7 @@ function PetSurvey() {
           )}
         </ul>
       </div>
-    
+      <button type="submit">Next</button>
 
     </div>
   );
